@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
+  color: #fff;
+}
+body{
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image:repeating-linear-gradient(45deg, rgba(208, 208, 208, 0.13) 0px, rgba(208, 208, 208, 0.13) 43px,rgba(195, 195, 195, 0.13) 43px, rgba(195, 195, 195, 0.13) 85px,rgba(41, 41, 41, 0.13) 85px, rgba(41, 41, 41, 0.13) 109px,rgba(88, 88, 88, 0.13) 109px, rgba(88, 88, 88, 0.13) 129px,rgba(24, 24, 24, 0.13) 129px, rgba(24, 24, 24, 0.13) 139px,rgba(92, 92, 92, 0.13) 139px, rgba(92, 92, 92, 0.13) 179px,rgba(37, 37, 37, 0.13) 179px, rgba(37, 37, 37, 0.13) 219px),repeating-linear-gradient(45deg, rgba(18, 18, 18, 0.13) 0px, rgba(18, 18, 18, 0.13) 13px,rgba(48, 48, 48, 0.13) 13px, rgba(48, 48, 48, 0.13) 61px,rgba(130, 130, 130, 0.13) 61px, rgba(130, 130, 130, 0.13) 84px,rgba(233, 233, 233, 0.13) 84px, rgba(233, 233, 233, 0.13) 109px,rgba(8, 8, 8, 0.13) 109px, rgba(8, 8, 8, 0.13) 143px,rgba(248, 248, 248, 0.13) 143px, rgba(248, 248, 248, 0.13) 173px,rgba(37, 37, 37, 0.13) 173px, rgba(37, 37, 37, 0.13) 188px),repeating-linear-gradient(45deg, rgba(3, 3, 3, 0.1) 0px, rgba(3, 3, 3, 0.1) 134px,rgba(82, 82, 82, 0.1) 134px, rgba(82, 82, 82, 0.1) 282px,rgba(220, 220, 220, 0.1) 282px, rgba(220, 220, 220, 0.1) 389px,rgba(173, 173, 173, 0.1) 389px, rgba(173, 173, 173, 0.1) 458px,rgba(109, 109, 109, 0.1) 458px, rgba(109, 109, 109, 0.1) 516px,rgba(240, 240, 240, 0.1) 516px, rgba(240, 240, 240, 0.1) 656px,rgba(205, 205, 205, 0.1) 656px, rgba(205, 205, 205, 0.1) 722px),linear-gradient(90deg, rgb(21, 145, 22),rgb(39, 248, 84));
+  background-image: url(/dirt.png);
+}
+.game--body {
+  position: relative;
+  min-height: 27em;
+  width: 48em;
+}
+:root{
+  font-size: 22px;
+}
+.game--main {
+  position: relative;
+  min-height: 27em;
+  width: 48em;
+  background-color: limegreen;
+  background-image: linear-gradient(45deg, rgb(21, 145, 22) 25%, transparent 25%), linear-gradient(-45deg, rgb(21, 145, 22) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, rgb(21, 145, 22) 75%), linear-gradient(-45deg, transparent 75%, rgb(21, 145, 22) 75%);
+  background-size: 2em 2em;
+  background-position: 0 0, 0 1em, 1em -1em, -1em 0px;
+  overflow: hidden;
+  box-shadow: 0 0 0 0.2em #33333355;
+}
+.game--controls {display: none;}
+.game--player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1em;
+  width: 1em;
+  /*
+  background-color: rgb(255, 174, 0);
+  border-radius: 30%;
+  */
+  background-color: black;
+  border: 1px solid rgb(255, 174, 0);
+}
+.game--paused, .game--over {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  color: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000000aa;
+  z-index: 2;
+  font-weight: bold;
+  font-size: 250%;
+  text-shadow: 1px 1px black;
+}
+.game--over {
+  color: red;
+}
+.tail{border: 1px solid rgb(255, 174, 0);}
+.tail:nth-of-type(odd) {background-color: rgb(255, 30, 0);}
+.tail:nth-of-type(even) {background-color: black;}
+.game--point {
+  position: relative;
+  height: 1em;
+  width: 1em;
+  background-color: red;
+  border: 1px solid #333;
+  border-radius: 50%;
+}
+
+.game--score {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -2.8em;
+  font-size: 120%;
+  font-weight: bold;
+}
+.game--score span {
+  display: block;
+  text-align: center;
+}
+
+@media (max-width:1080px) {
+  .game--body, .game--main {
+    width: 30em;
+  }
+}
+@media (max-width:680px) {
+  .game--body, .game--main {
+    width: 20em;
+    min-height: 20em;
+  }
+  .game--controls {
+    text-align: center;
+    font-size: 1.5em;
+    display: grid;
+    grid-template-columns: repeat(3, 5fr);
+    height: calc(20rem / 3);
+    grid-gap: 0.5em;
+    margin-top: 1rem;
+  }
+  .game--controls button {
+    background-color: #333;
+    border: 0;
+    outline: none;
+    border: 0.1em solid #22222250;
+  }
+  .game--controls button:active {background-color: #222;}
+  .game--controls .empty {visibility: hidden;}
+}
+@media (max-height:740px) {
+  :root {
+    font-size: 16px;
+  }
+}
