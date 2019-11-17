@@ -133,10 +133,9 @@ body{
     outline: none;
     border: 0.1em solid #22222250;
   }
-  .game--controls button:active {background-color: #222;}
   .game--controls .empty {visibility: hidden;}
 }
-@media (max-width:500px) {
+@media (max-width:550px) {
 :root{
   font-size: 16px;
 }
@@ -144,6 +143,6 @@ body{
 
 @media (max-height:740px) {
   :root {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
