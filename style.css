@@ -131,10 +131,10 @@ body{
     margin-top: 1rem;
   }
   .game--controls button {
-    background-color: #333;
+    background-color: #000000cc;
     border: 0;
     outline: none;
-    border: 0.1em solid #22222250;
+    border: 0.1em solid #000000dd;
   }
   .game--controls .empty {visibility: hidden;}
 }
