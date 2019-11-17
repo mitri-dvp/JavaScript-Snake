@@ -136,6 +136,12 @@ body{
   .game--controls button:active {background-color: #222;}
   .game--controls .empty {visibility: hidden;}
 }
+@media (max-width:500px) {
+:root{
+  font-size: 16px;
+}
+}
+
 @media (max-height:740px) {
   :root {
     font-size: 16px;

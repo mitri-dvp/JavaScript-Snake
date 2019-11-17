@@ -11,7 +11,7 @@ let isY = false;
 let n = 1;
 let beforeX = '0em';
 let beforeY = '0em';
-let tails;
+let tails = [];
 let dataX = [];
 let dataY = [];
 let playing = true;
