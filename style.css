@@ -141,8 +141,8 @@ body{
 }
 }
 
-@media (max-height:740px) {
+@media (max-height:550px) {
   :root {
-    font-size: 14px;
+    font-size: 10px;
   }
 }
