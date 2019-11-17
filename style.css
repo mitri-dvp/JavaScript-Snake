@@ -3,17 +3,25 @@
 *{
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   font-family: 'Nunito', sans-serif;
   color: #fff;
 }
 body{
   min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-image:repeating-linear-gradient(45deg, rgba(208, 208, 208, 0.13) 0px, rgba(208, 208, 208, 0.13) 43px,rgba(195, 195, 195, 0.13) 43px, rgba(195, 195, 195, 0.13) 85px,rgba(41, 41, 41, 0.13) 85px, rgba(41, 41, 41, 0.13) 109px,rgba(88, 88, 88, 0.13) 109px, rgba(88, 88, 88, 0.13) 129px,rgba(24, 24, 24, 0.13) 129px, rgba(24, 24, 24, 0.13) 139px,rgba(92, 92, 92, 0.13) 139px, rgba(92, 92, 92, 0.13) 179px,rgba(37, 37, 37, 0.13) 179px, rgba(37, 37, 37, 0.13) 219px),repeating-linear-gradient(45deg, rgba(18, 18, 18, 0.13) 0px, rgba(18, 18, 18, 0.13) 13px,rgba(48, 48, 48, 0.13) 13px, rgba(48, 48, 48, 0.13) 61px,rgba(130, 130, 130, 0.13) 61px, rgba(130, 130, 130, 0.13) 84px,rgba(233, 233, 233, 0.13) 84px, rgba(233, 233, 233, 0.13) 109px,rgba(8, 8, 8, 0.13) 109px, rgba(8, 8, 8, 0.13) 143px,rgba(248, 248, 248, 0.13) 143px, rgba(248, 248, 248, 0.13) 173px,rgba(37, 37, 37, 0.13) 173px, rgba(37, 37, 37, 0.13) 188px),repeating-linear-gradient(45deg, rgba(3, 3, 3, 0.1) 0px, rgba(3, 3, 3, 0.1) 134px,rgba(82, 82, 82, 0.1) 134px, rgba(82, 82, 82, 0.1) 282px,rgba(220, 220, 220, 0.1) 282px, rgba(220, 220, 220, 0.1) 389px,rgba(173, 173, 173, 0.1) 389px, rgba(173, 173, 173, 0.1) 458px,rgba(109, 109, 109, 0.1) 458px, rgba(109, 109, 109, 0.1) 516px,rgba(240, 240, 240, 0.1) 516px, rgba(240, 240, 240, 0.1) 656px,rgba(205, 205, 205, 0.1) 656px, rgba(205, 205, 205, 0.1) 722px),-webkit-gradient(linear, left top, right top, from(rgb(21, 145, 22)),to(rgb(39, 248, 84)));
   background-image:repeating-linear-gradient(45deg, rgba(208, 208, 208, 0.13) 0px, rgba(208, 208, 208, 0.13) 43px,rgba(195, 195, 195, 0.13) 43px, rgba(195, 195, 195, 0.13) 85px,rgba(41, 41, 41, 0.13) 85px, rgba(41, 41, 41, 0.13) 109px,rgba(88, 88, 88, 0.13) 109px, rgba(88, 88, 88, 0.13) 129px,rgba(24, 24, 24, 0.13) 129px, rgba(24, 24, 24, 0.13) 139px,rgba(92, 92, 92, 0.13) 139px, rgba(92, 92, 92, 0.13) 179px,rgba(37, 37, 37, 0.13) 179px, rgba(37, 37, 37, 0.13) 219px),repeating-linear-gradient(45deg, rgba(18, 18, 18, 0.13) 0px, rgba(18, 18, 18, 0.13) 13px,rgba(48, 48, 48, 0.13) 13px, rgba(48, 48, 48, 0.13) 61px,rgba(130, 130, 130, 0.13) 61px, rgba(130, 130, 130, 0.13) 84px,rgba(233, 233, 233, 0.13) 84px, rgba(233, 233, 233, 0.13) 109px,rgba(8, 8, 8, 0.13) 109px, rgba(8, 8, 8, 0.13) 143px,rgba(248, 248, 248, 0.13) 143px, rgba(248, 248, 248, 0.13) 173px,rgba(37, 37, 37, 0.13) 173px, rgba(37, 37, 37, 0.13) 188px),repeating-linear-gradient(45deg, rgba(3, 3, 3, 0.1) 0px, rgba(3, 3, 3, 0.1) 134px,rgba(82, 82, 82, 0.1) 134px, rgba(82, 82, 82, 0.1) 282px,rgba(220, 220, 220, 0.1) 282px, rgba(220, 220, 220, 0.1) 389px,rgba(173, 173, 173, 0.1) 389px, rgba(173, 173, 173, 0.1) 458px,rgba(109, 109, 109, 0.1) 458px, rgba(109, 109, 109, 0.1) 516px,rgba(240, 240, 240, 0.1) 516px, rgba(240, 240, 240, 0.1) 656px,rgba(205, 205, 205, 0.1) 656px, rgba(205, 205, 205, 0.1) 722px),linear-gradient(90deg, rgb(21, 145, 22),rgb(39, 248, 84));
-  background-image: url(/dirt.png);
+  background-image: url(./dirt.png);
 }
 .game--body {
   position: relative;
@@ -32,7 +40,8 @@ body{
   background-size: 2em 2em;
   background-position: 0 0, 0 1em, 1em -1em, -1em 0px;
   overflow: hidden;
-  box-shadow: 0 0 0 0.2em #33333355;
+  -webkit-box-shadow: 0 0 0 0.2em #33333355;
+          box-shadow: 0 0 0 0.2em #33333355;
 }
 .game--controls {display: none;}
 .game--player {
@@ -55,9 +64,15 @@ body{
   height: 100%;
   width: 100%;
   color: #ccc;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   background-color: #000000aa;
   z-index: 2;
   font-weight: bold;
@@ -82,7 +97,8 @@ body{
 .game--score {
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   top: -2.8em;
   font-size: 120%;
   font-weight: bold;
