@@ -113,7 +113,10 @@ body{
     width: 30em;
   }
 }
-@media (max-width:680px) {
+@media (max-width:750px) {
+  :root{
+    font-size: 18px;
+  }
   .game--body, .game--main {
     width: 20em;
     min-height: 20em;
@@ -123,7 +126,7 @@ body{
     font-size: 1.5em;
     display: grid;
     grid-template-columns: repeat(3, 5fr);
-    height: calc(20rem / 3);
+    height: calc(20rem / 2);
     grid-gap: 0.5em;
     margin-top: 1rem;
   }
