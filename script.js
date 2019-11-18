@@ -21,9 +21,9 @@ let gameOver;
 
 // Listeners
 controls.forEach(control => {
-  control.addEventListener('touchstart', changeDirection)
-  control.addEventListener('touchstart', pauseGame)
-})
+  control.addEventListener('touchstart', changeDirection);
+  control.addEventListener('touchstart', pauseGame);
+});
 window.addEventListener('keydown', changeDirection);
 window.addEventListener('keydown', pauseGame);
 window.addEventListener('load', createPoint);
@@ -31,25 +31,25 @@ window.addEventListener('load', createPoint);
 let gameInterval = setInterval(movePlayer, gameSpeed);
 // Functions
 function pauseGame(e) {
-    if (e.keyCode == 13 || e.target.className == 'start') {
-      if (!isOver) {
-        if (playing) {
-          clearInterval(gameInterval);
-          paused = document.createElement('div');
-          paused.classList.add('game--paused');
-          paused.innerHTML = 'Paused';
-          gameMain.appendChild(paused);
-          playing = false;
-        } else {
-          paused.remove();
-          gameInterval = setInterval(movePlayer, gameSpeed);
-          playing = true;
-        }
+  if (e.keyCode == 13 || e.target.className == 'start') {
+    if (!isOver) {
+      if (playing) {
+        clearInterval(gameInterval);
+        paused = document.createElement('div');
+        paused.classList.add('game--paused');
+        paused.innerHTML = 'Paused';
+        gameMain.appendChild(paused);
+        playing = false;
       } else {
-        gameOver.remove();
-        resetGame();
+        paused.remove();
+        gameInterval = setInterval(movePlayer, gameSpeed);
+        playing = true;
       }
+    } else {
+      gameOver.remove();
+      resetGame();
     }
+  }
 }
 function movePlayer(e) {
   tails = document.querySelectorAll('.tail');
@@ -57,6 +57,12 @@ function movePlayer(e) {
   beforeY = `${parseInt(player.style.top)}em`;
   dataY.push(beforeY);
   dataX.push(beforeX);
+  tails.forEach(tail => {
+    if (tail.offsetTop == point.offsetTop && tail.offsetLeft == point.offsetLeft) {
+      createPoint();
+      return 0;
+    }
+  });
   if (isX) {
     player.style.left = `${parseInt(player.style.left) + n}em`;
   } else if (isY) {
@@ -171,12 +177,6 @@ function createPoint() {
   point.classList.add('game--point');
   point.style.top = `${Math.floor(Math.random() * (gameMain.offsetHeight / player.offsetHeight))}em`;
   point.style.left = `${Math.floor(Math.random() * (gameMain.offsetWidth / player.offsetHeight))}em`;
-  tails.forEach(tail => {
-    if (tail.offsetTop == point.offsetTop && tail.offsetLeft == point.offsetLeft) {
-      createPoint();
-      return
-    }
-  })
   gameMain.insertBefore(point, player);
 }
 
