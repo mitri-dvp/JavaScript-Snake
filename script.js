@@ -3,9 +3,13 @@ const gameMain = document.querySelector('.game--main');
 const controls = document.querySelectorAll('.game--controls button');
 const player = document.querySelector('.game--player');
 const scoreSpan = document.querySelector('.game--score span');
+const highscoreSpan = document.querySelector('.game--high-score span');
 const gameSpeed = 80;
+const scores = [];
 let point = document.createElement('div');
 let score = 0;
+let highscore;
+localStorage.getItem('highscore') ? highscore = JSON.parse(localStorage.getItem('highscore')) : highscore = [0];
 let isX = true;
 let isY = false;
 let n = 1;
@@ -18,6 +22,9 @@ let playing = true;
 let isOver = false;
 let paused;
 let gameOver;
+
+// Highscore
+highscoreSpan.innerHTML = highscore;
 
 // Listeners
 controls.forEach(control => {
@@ -92,24 +99,36 @@ function changeDirection(e) {
   switch (e.keyCode) {
     // Left
     case 37:
+      if(isX && n==1){
+        return
+      }
       n = -1;
       isX = true;
       isY = false;
       break;
     // Right
     case 39:
+        if(isX && n==-1){
+          return
+        }
       n = 1;
       isX = true;
       isY = false;
       break;
     // Up
     case 38:
+        if(isY && n==1){
+          return
+        }
       n = -1;
       isX = false;
       isY = true;
       break;
     // Down
     case 40:
+        if(isY && n==-1){
+          return
+        }
       n = 1;
       isX = false;
       isY = true;
@@ -119,24 +138,36 @@ function changeDirection(e) {
   switch (e.target.className) {
     // Left
     case 'left':
+        if(isX && n==1){
+          return
+        }
       n = -1;
       isX = true;
       isY = false;
       break;
     // Right
     case 'right':
+        if(isX && n==-1){
+          return
+        }
       n = 1;
       isX = true;
       isY = false;
       break;
     // Up
     case 'up':
+        if(isY && n==1){
+          return
+        }
       n = -1;
       isX = false;
       isY = true;
       break;
     // Down
     case 'down':
+        if(isY && n==-1){
+          return
+        }
       n = 1;
       isX = false;
       isY = true;
@@ -198,6 +229,10 @@ function resetGame() {
   player.style.top = '0em';
   player.style.left = '0em';
   tails.forEach(tail => tail.remove());
+  scores.push(score);
+  highscore = scores.sort((a, b) => b - a)[0];
+  localStorage.setItem('highscore', JSON.stringify(highscore))
+  highscoreSpan.innerHTML = highscore;
   isOver = false;
   score = 0;
   scoreSpan.innerHTML = score;

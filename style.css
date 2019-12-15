@@ -96,7 +96,7 @@ body{
 
 .game--score {
   position: absolute;
-  left: 50%;
+  left: 40%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
   top: -2.8em;
@@ -106,6 +106,12 @@ body{
 .game--score span {
   display: block;
   text-align: center;
+}
+
+.game--high-score {
+  left: 60%;
+  color: yellow;
+  text-shadow: 1px 1px 1px #00000080;
 }
 
 @media (max-width:1080px) {
