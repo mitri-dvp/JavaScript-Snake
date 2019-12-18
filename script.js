@@ -4,12 +4,13 @@ const controls = document.querySelectorAll('.game--controls button');
 const player = document.querySelector('.game--player');
 const scoreSpan = document.querySelector('.game--score span');
 const highscoreSpan = document.querySelector('.game--high-score span');
+const skinForm = document.querySelector('.main-menu--form');
 const gameSpeed = 80;
 const scores = [];
 let point = document.createElement('div');
 let score = 0;
 let highscore;
-localStorage.getItem('highscore') ? highscore = JSON.parse(localStorage.getItem('highscore')) : highscore = [0];
+localStorage.getItem('highscore') ? (highscore = JSON.parse(localStorage.getItem('highscore'))) : (highscore = [0]);
 let isX = true;
 let isY = false;
 let n = 1;
@@ -22,6 +23,7 @@ let playing = true;
 let isOver = false;
 let paused;
 let gameOver;
+let choice;
 
 // Highscore
 highscoreSpan.innerHTML = highscore;
@@ -33,9 +35,20 @@ controls.forEach(control => {
 });
 window.addEventListener('keydown', changeDirection);
 window.addEventListener('keydown', pauseGame);
-window.addEventListener('load', createPoint);
+skinForm.addEventListener('submit', startGame);
 
-let gameInterval = setInterval(movePlayer, gameSpeed);
+// Create Point
+let gameInterval;
+function startGame(e) {
+  e.preventDefault();
+  const chkBoxes = this.querySelectorAll('input[type=radio]');
+  chkBoxes.forEach(box => (box.checked ? (choice = box.value) : 0));
+  changeSkin();
+  this.parentElement.parentElement.remove();
+  gameInterval = setInterval(movePlayer, gameSpeed);
+  createPoint();
+}
+
 // Functions
 function pauseGame(e) {
   if (e.keyCode == 13 || e.target.className == 'start') {
@@ -99,8 +112,8 @@ function changeDirection(e) {
   switch (e.keyCode) {
     // Left
     case 37:
-      if(isX && n==1){
-        return
+      if (isX && n == 1) {
+        return;
       }
       n = -1;
       isX = true;
@@ -108,27 +121,27 @@ function changeDirection(e) {
       break;
     // Right
     case 39:
-        if(isX && n==-1){
-          return
-        }
+      if (isX && n == -1) {
+        return;
+      }
       n = 1;
       isX = true;
       isY = false;
       break;
     // Up
     case 38:
-        if(isY && n==1){
-          return
-        }
+      if (isY && n == 1) {
+        return;
+      }
       n = -1;
       isX = false;
       isY = true;
       break;
     // Down
     case 40:
-        if(isY && n==-1){
-          return
-        }
+      if (isY && n == -1) {
+        return;
+      }
       n = 1;
       isX = false;
       isY = true;
@@ -138,36 +151,36 @@ function changeDirection(e) {
   switch (e.target.className) {
     // Left
     case 'left':
-        if(isX && n==1){
-          return
-        }
+      if (isX && n == 1) {
+        return;
+      }
       n = -1;
       isX = true;
       isY = false;
       break;
     // Right
     case 'right':
-        if(isX && n==-1){
-          return
-        }
+      if (isX && n == -1) {
+        return;
+      }
       n = 1;
       isX = true;
       isY = false;
       break;
     // Up
     case 'up':
-        if(isY && n==1){
-          return
-        }
+      if (isY && n == 1) {
+        return;
+      }
       n = -1;
       isX = false;
       isY = true;
       break;
     // Down
     case 'down':
-        if(isY && n==-1){
-          return
-        }
+      if (isY && n == -1) {
+        return;
+      }
       n = 1;
       isX = false;
       isY = true;
@@ -214,8 +227,10 @@ function createPoint() {
 function makeTail() {
   const tail = player.cloneNode(true);
   tail.classList.add('tail');
+  addSkinToTail(tail);
   gameMain.appendChild(tail);
 }
+
 function updateTail() {
   tails = document.querySelectorAll('.tail');
   dataX.splice(0, dataX.length - tails.length);
@@ -231,7 +246,7 @@ function resetGame() {
   tails.forEach(tail => tail.remove());
   scores.push(score);
   highscore = scores.sort((a, b) => b - a)[0];
-  localStorage.setItem('highscore', JSON.stringify(highscore))
+  localStorage.setItem('highscore', JSON.stringify(highscore));
   highscoreSpan.innerHTML = highscore;
   isOver = false;
   score = 0;
@@ -239,4 +254,34 @@ function resetGame() {
   n = 1;
   isX = true;
   gameInterval = setInterval(movePlayer, gameSpeed);
+}
+
+function addSkinToTail(tail) {
+  switch (choice) {
+    case 'coral':
+      tail.classList.add('coral');
+      break;
+    case 'thorny':
+      tail.classList.add('thorny');
+      break;
+    case 'pink':
+      tail.classList.add('pink');
+      break;
+    default:
+  }
+}
+
+function changeSkin() {
+  switch (choice) {
+    case 'coral':
+      player.classList.add('coral');
+      break;
+    case 'thorny':
+      player.classList.add('thorny');
+      break;
+    case 'pink':
+      player.classList.add('pink');
+      break;
+    default:
+  }
 }

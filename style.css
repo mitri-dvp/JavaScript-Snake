@@ -6,9 +6,9 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   font-family: 'Nunito', sans-serif;
-  color: #fff;
 }
 body{
+  color: #fff;
   min-height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -44,19 +44,49 @@ body{
           box-shadow: 0 0 0 0.2em #33333355;
 }
 .game--controls {display: none;}
+
 .game--player {
   position: absolute;
   top: 0;
   left: 0;
   height: 1em;
   width: 1em;
-  /*
-  background-color: rgb(255, 174, 0);
-  border-radius: 30%;
-  */
+  background-color: #3fd122;
+  border: 1px solid #000;
+}
+.tail{border: 1px solid #000;}
+.tail:nth-of-type(odd) {background-color: #c6d825}
+
+/*
+// Player Skins
+*/
+/* Coral */
+.game--player.coral {
   background-color: black;
   border: 1px solid rgb(255, 174, 0);
 }
+.tail.coral{border: 1px solid rgb(255, 174, 0);}
+.tail.coral:nth-of-type(odd) {background-color: rgb(255, 30, 0);}
+.tail.coral:nth-of-type(even) {background-color: black;}
+
+/* Thorny Bushes */
+.game--player.thorny {
+  background-color: rgb(255, 94, 0);
+  border: 1px solid rgb(255, 38, 0);
+}
+.tail.thorny{border: 1px solid rgb(255, 38, 0)}
+.tail.thorny:nth-of-type(odd) {background-color: rgb(0, 235, 223);}
+.tail.thorny:nth-of-type(even) {background-color: rgb(255, 94, 0);;}
+
+/* Pink Bushes */
+.game--player.pink {
+  background-color: rgb(255, 84, 189);
+  border: 1px solid #fff;;
+}
+.tail.pink{border: 1px solid #fff;}
+.tail.pink:nth-of-type(odd) {background-color: rgb(255, 0, 221);}
+.tail.pink:nth-of-type(even) {background-color: rgb(255, 84, 189);}
+
 .game--paused, .game--over {
   position: absolute;
   top: 0;
@@ -82,9 +112,7 @@ body{
 .game--over {
   color: red;
 }
-.tail{border: 1px solid rgb(255, 174, 0);}
-.tail:nth-of-type(odd) {background-color: rgb(255, 30, 0);}
-.tail:nth-of-type(even) {background-color: black;}
+
 .game--point {
   position: relative;
   height: 1em;
@@ -113,6 +141,89 @@ body{
   color: yellow;
   text-shadow: 1px 1px 1px #00000080;
 }
+
+/*
+// Main Menu
+*/
+.main-menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: #222;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-menu h4{
+  text-align: center;
+  font-weight: normal;
+}
+.main-menu .card {
+  display: grid;
+  justify-content: center;
+  padding: 1em;
+  height: 400px;
+  width: 300px;
+  background-color: #eee;
+  box-shadow: 0px 0px 0px 2px #000;
+  border-radius: 1em;
+}
+.main-menu form {
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.main-menu form .choice {
+  display: flex;
+  justify-content: space-between;
+}
+.main-menu form input[type="submit"] {
+  display: flex;
+  border: 1px solid #333;
+  padding: 0.5em 1em;
+  border-radius: 0.5em;
+  cursor: pointer;
+  justify-content: center;
+  outline: none;
+}
+
+.main-menu form input[type="submit"]:active {
+  background-color: #888;
+}
+.main-menu .snake {position: relative;}
+
+.main-menu .snake::after, .main-menu .snake::before  {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  height: 1em;
+  width: 3em;
+  border: 1px solid black;
+}
+.main-menu .snake::after {
+  width: 1em;
+  left: 1em;
+}
+.main-menu .snake--1::before {background-color: #3fd122;}
+.main-menu .snake--1::after {background-color: #c6d825;}
+
+.main-menu .snake--2::before, .main-menu .snake--2::after {border: 1px solid yellow;}
+.main-menu .snake--2::before {background-color: black;}
+.main-menu .snake--2::after {background-color: rgb(255, 30, 0);}
+
+.main-menu .snake--3::before, .main-menu .snake--3::after {border: 1px solid tomato;}
+.main-menu .snake--3::before {background-color: rgb(255, 94, 0);}
+.main-menu .snake--3::after {background-color: rgb(0, 235, 223);}
+
+.main-menu .snake--4::before, .main-menu .snake--4::after {border: 1px solid #fff;}
+.main-menu .snake--4::before {background-color: rgb(255, 84, 189);}
+.main-menu .snake--4::after {background-color: rgb(255, 0, 221);}
+
 
 @media (max-width:1080px) {
   .game--body, .game--main {

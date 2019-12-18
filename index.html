@@ -12,6 +12,34 @@
 </head>
 
 <body>
+  <div class="main-menu">
+    <div class="card">
+      <form class="main-menu--form" action="">
+        <header>
+          <h2>Snake Game!</h2>
+          <h4>choose a skin</h4>
+        </header>
+
+        <div class="choice">
+          <div class="snake snake--1"></div>
+          <input type="radio" value="original" name="snake" checked>
+        </div>
+        <div class="choice">
+          <div class="snake snake--2"></div>
+          <input type="radio" value="coral" name="snake">
+        </div>
+        <div class="choice">
+          <div class="snake snake--3"></div>
+          <input type="radio" value="thorny" name="snake">
+        </div>
+        <div class="choice">
+          <div class="snake snake--4"></div>
+          <input type="radio" value="pink" name="snake">
+        </div>
+        <input type="submit" value="Start">
+      </form>
+    </div>
+  </div>
   <div class="game--body">
     <div class="game--score">Score<span>0</span></div>
     <div class="game--score game--high-score">High Score<span>0</span></div>
