@@ -252,6 +252,7 @@ body{
     border: 0;
     outline: none;
     border: 0.1em solid #000000dd;
+    color: #fff;
   }
   .game--controls .empty {visibility: hidden;}
 }
