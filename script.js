@@ -4,7 +4,8 @@ const controls = document.querySelectorAll('.game--controls button');
 const player = document.querySelector('.game--player');
 const scoreSpan = document.querySelector('.game--score span');
 const highscoreSpan = document.querySelector('.game--high-score span');
-const skinForm = document.querySelector('.main-menu--form');
+const skinForm = document.querySelector('.main-menu');
+const choices = document.querySelectorAll('.choice');
 const gameSpeed = 80;
 const scores = [];
 let point = document.createElement('div');
@@ -24,11 +25,25 @@ let isOver = false;
 let paused;
 let gameOver;
 let choice;
+let move_count = true;
+let move_allow = true;
+const select_sfx = new Audio('./css/sounds/select.mp3');
+const blop_sfx = new Audio('./css/sounds/blop.mp3');
+const bite_sfx = new Audio('./css/sounds/bite.mp3');
+const end_sfx = new Audio('./css/sounds/end.mp3');
+const move1_sfx = new Audio('./css/sounds/move1.mp3');
+const move2_sfx = new Audio('./css/sounds/move2.mp3');
 
 // Highscore
 highscoreSpan.innerHTML = highscore;
 
 // Listeners
+choices.forEach(choice => {
+  choice.addEventListener('click', () => {
+    blop_sfx.currentTime = 0
+    blop_sfx.play()
+  })
+})
 controls.forEach(control => {
   control.addEventListener('touchstart', changeDirection);
   control.addEventListener('touchstart', pauseGame);
@@ -41,10 +56,12 @@ skinForm.addEventListener('submit', startGame);
 let gameInterval;
 function startGame(e) {
   e.preventDefault();
+  select_sfx.currentTime = 0
+  select_sfx.play()
   const chkBoxes = this.querySelectorAll('input[type=radio]');
   chkBoxes.forEach(box => (box.checked ? (choice = box.value) : 0));
   changeSkin();
-  this.parentElement.parentElement.remove();
+  skinForm.classList.add('hide')
   gameInterval = setInterval(movePlayer, gameSpeed);
   createPoint();
 }
@@ -59,10 +76,14 @@ function pauseGame(e) {
         paused.classList.add('game--paused');
         paused.innerHTML = 'Paused';
         gameMain.appendChild(paused);
+        select_sfx.currentTime = 0
+        select_sfx.play()
         playing = false;
       } else {
         paused.remove();
         gameInterval = setInterval(movePlayer, gameSpeed);
+        select_sfx.currentTime = 0
+        select_sfx.play()
         playing = true;
       }
     } else {
@@ -72,6 +93,7 @@ function pauseGame(e) {
   }
 }
 function movePlayer(e) {
+  move_allow = true
   tails = document.querySelectorAll('.tail');
   beforeX = `${parseInt(player.style.left)}em`;
   beforeY = `${parseInt(player.style.top)}em`;
@@ -108,7 +130,12 @@ function movePlayer(e) {
   updateTail();
 }
 
+let prev_key;
 function changeDirection(e) {
+  if(prev_key === e.keyCode) return
+  prev_key = e.keyCode
+  if(!move_allow) return
+  move_allow = false
   switch (e.keyCode) {
     // Left
     case 37:
@@ -118,6 +145,15 @@ function changeDirection(e) {
       n = -1;
       isX = true;
       isY = false;
+      if(move_count) {
+        move1_sfx.currentTime = 0;
+        move1_sfx.play();
+        move_count = false
+      } else { 
+        move2_sfx.currentTime = 0;
+        move2_sfx.play();
+        move_count = true
+      }
       break;
     // Right
     case 39:
@@ -127,6 +163,15 @@ function changeDirection(e) {
       n = 1;
       isX = true;
       isY = false;
+      if(move_count) {
+        move1_sfx.currentTime = 0;
+        move1_sfx.play();
+        move_count = false
+      } else { 
+        move2_sfx.currentTime = 0;
+        move2_sfx.play();
+        move_count = true
+      }
       break;
     // Up
     case 38:
@@ -136,6 +181,15 @@ function changeDirection(e) {
       n = -1;
       isX = false;
       isY = true;
+      if(move_count) {
+        move1_sfx.currentTime = 0;
+        move1_sfx.play();
+        move_count = false
+      } else { 
+        move2_sfx.currentTime = 0;
+        move2_sfx.play();
+        move_count = true
+      }
       break;
     // Down
     case 40:
@@ -145,6 +199,15 @@ function changeDirection(e) {
       n = 1;
       isX = false;
       isY = true;
+      if(move_count) {
+        move1_sfx.currentTime = 0;
+        move1_sfx.play();
+        move_count = false
+      } else { 
+        move2_sfx.currentTime = 0;
+        move2_sfx.play();
+        move_count = true
+      }
       break;
     default:
   }
@@ -194,6 +257,12 @@ function checkPoint() {
     createPoint();
     makeTail();
     score++;
+    // SCOREHERE
+    if(score > highscore) {
+      scoreSpan.parentElement.classList.add('new-highscore');
+    }
+    bite_sfx.currentTime = 0
+    bite_sfx.play()
     scoreSpan.textContent = score;
   }
   checkTail();
@@ -209,6 +278,8 @@ function checkTail() {
         gameOver.classList.add('game--over');
         gameOver.innerHTML = 'GameOver!';
         gameMain.appendChild(gameOver);
+        end_sfx.currentTime = 0
+        end_sfx.play()
         isOver = true;
       }
     });
@@ -241,6 +312,8 @@ function updateTail() {
 }
 
 function resetGame() {
+  select_sfx.currentTime = 0
+  select_sfx.play()
   player.style.top = '0em';
   player.style.left = '0em';
   tails.forEach(tail => tail.remove());

@@ -6,53 +6,64 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Snake Game</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./css/style.css">
   <link rel="icon"
-    href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/openmoji/213/snake_1f40d.png">
+    href="./css/snake.svg">
 </head>
 
 <body>
-  <div class="main-menu">
-    <div class="card">
-      <form class="main-menu--form" action="">
-        <header>
-          <h2>Snake Game!</h2>
-          <h4>choose a skin</h4>
-        </header>
-
-        <div class="choice">
-          <div class="snake snake--1"></div>
-          <input type="radio" value="original" name="snake" checked>
-        </div>
-        <div class="choice">
-          <div class="snake snake--2"></div>
-          <input type="radio" value="coral" name="snake">
-        </div>
-        <div class="choice">
-          <div class="snake snake--3"></div>
-          <input type="radio" value="thorny" name="snake">
-        </div>
-        <div class="choice">
-          <div class="snake snake--4"></div>
-          <input type="radio" value="pink" name="snake">
-        </div>
-        <input type="submit" value="Start">
-      </form>
+  <form class="main-menu" action="">
+    <div class="title">
+      <div>Welcome to</div>
+      <h1>Snake Game!</h1>
+      <div>choose a skin:</div>
     </div>
-  </div>
+
+    <div class="choice-container">
+      <div class="choice">
+        <label class="snake snake--1">
+          <input type="radio" value="original" name="snake" checked>
+          <div class="radio"></div>
+        </label>
+      </div>
+      <div class="choice">
+        <label class="snake snake--2">
+          <input type="radio" value="coral" name="snake">
+          <div class="radio"></div>
+        </label>
+      </div>
+      <div class="choice">
+        <label class="snake snake--3">
+          <input type="radio" value="thorny" name="snake">
+          <div class="radio"></div>
+        </label>
+      </div>
+      <div class="choice">
+        <label class="snake snake--4">
+          <input type="radio" value="pink" name="snake">
+          <div class="radio"></div>
+        </label>
+      </div>
+    </div>
+
+    <input class="submit" type="submit" value="Start">
+  </form>
+
   <div class="game--body">
-    <div class="game--score">Score<span>0</span></div>
-    <div class="game--score game--high-score">High Score<span>0</span></div>
+    <div class="game--score">
+      <div>Score<span>0</span></div>
+      <div class="game--high-score">High Score<span>0</span></div>
+    </div>
     <div class="game--main">
       <div class="game--player" style="top: 0;left: 0;"></div>
     </div>
     <div class="game--controls">
       <button class="empty">0</button>
-      <button class="up">up</button>
+      <button class="up">▲</button>
       <button class="start">start</button>
-      <button class="left">left</button>
-      <button class="down">down</button>
-      <button class="right">right</button>
+      <button class="left">◄</button>
+      <button class="down">▼</button>
+      <button class="right">►</button>
     </div>
   </div>
 
