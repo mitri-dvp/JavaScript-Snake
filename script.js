@@ -132,10 +132,10 @@ function movePlayer(e) {
 
 let prev_key;
 function changeDirection(e) {
-  if(prev_key === e.keyCode) return
-  prev_key = e.keyCode
   if(!move_allow) return
+  if(prev_key === e.keyCode) return
   move_allow = false
+  prev_key = e.keyCode
   switch (e.keyCode) {
     // Left
     case 37:
