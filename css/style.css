@@ -103,11 +103,16 @@ body{
   background-color: #000000aa;
   z-index: 2;
   font-weight: bold;
-  font-size: 250%;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   text-shadow: 1px 1px black;
 }
 .game--over {
   color: red;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .game--point {
