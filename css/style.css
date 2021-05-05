@@ -347,6 +347,7 @@ body{
     font-weight: bolder;
     letter-spacing: 1px;
     color: #fff;
+    height: 70px;
   }
   .game--controls .icon {
     display: flex;

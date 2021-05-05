@@ -133,122 +133,119 @@ function movePlayer(e) {
 let prev_key;
 function changeDirection(e) {
   if(!move_allow) return
-  if(prev_key === e.keyCode) return
+  current_key = e.keyCode || e.target.className
+  if(prev_key === current_key) return
   move_allow = false
-  prev_key = e.keyCode
-  switch (e.keyCode) {
+  prev_key = current_key
+  switch (current_key) {
     // Left
     case 37:
-      if (isX && n == 1) {
-        return;
-      }
-      n = -1;
-      isX = true;
-      isY = false;
-      if(move_count) {
-        move1_sfx.currentTime = 0;
-        move1_sfx.play();
-        move_count = false
-      } else { 
-        move2_sfx.currentTime = 0;
-        move2_sfx.play();
-        move_count = true
-      }
+      moveLeft()
       break;
     // Right
     case 39:
-      if (isX && n == -1) {
-        return;
-      }
-      n = 1;
-      isX = true;
-      isY = false;
-      if(move_count) {
-        move1_sfx.currentTime = 0;
-        move1_sfx.play();
-        move_count = false
-      } else { 
-        move2_sfx.currentTime = 0;
-        move2_sfx.play();
-        move_count = true
-      }
+      moveRight()
       break;
     // Up
     case 38:
-      if (isY && n == 1) {
-        return;
-      }
-      n = -1;
-      isX = false;
-      isY = true;
-      if(move_count) {
-        move1_sfx.currentTime = 0;
-        move1_sfx.play();
-        move_count = false
-      } else { 
-        move2_sfx.currentTime = 0;
-        move2_sfx.play();
-        move_count = true
-      }
+      moveUp()
       break;
     // Down
     case 40:
-      if (isY && n == -1) {
-        return;
-      }
-      n = 1;
-      isX = false;
-      isY = true;
-      if(move_count) {
-        move1_sfx.currentTime = 0;
-        move1_sfx.play();
-        move_count = false
-      } else { 
-        move2_sfx.currentTime = 0;
-        move2_sfx.play();
-        move_count = true
-      }
+      moveDown()
       break;
     default:
   }
-  switch (e.target.className) {
+  switch (current_key) {
     // Left
     case 'left':
-      if (isX && n == 1) {
-        return;
-      }
-      n = -1;
-      isX = true;
-      isY = false;
+      moveLeft()
       break;
     // Right
     case 'right':
-      if (isX && n == -1) {
-        return;
-      }
-      n = 1;
-      isX = true;
-      isY = false;
+      moveRight()
       break;
     // Up
     case 'up':
-      if (isY && n == 1) {
-        return;
-      }
-      n = -1;
-      isX = false;
-      isY = true;
+      moveUp()
       break;
     // Down
     case 'down':
-      if (isY && n == -1) {
-        return;
-      }
-      n = 1;
-      isX = false;
-      isY = true;
+      moveDown()
       break;
     default:
+  }
+}
+
+function moveLeft() {
+  if (isX && n == 1) {
+    return;
+  }
+  n = -1;
+  isX = true;
+  isY = false;
+  if(move_count) {
+    move1_sfx.currentTime = 0;
+    move1_sfx.play();
+    move_count = false
+  } else { 
+    move2_sfx.currentTime = 0;
+    move2_sfx.play();
+    move_count = true
+  }
+}
+
+function moveRight() {
+  if (isX && n == -1) {
+    return;
+  }
+  n = 1;
+  isX = true;
+  isY = false;
+  if(move_count) {
+    move1_sfx.currentTime = 0;
+    move1_sfx.play();
+    move_count = false
+  } else { 
+    move2_sfx.currentTime = 0;
+    move2_sfx.play();
+    move_count = true
+  }
+}
+
+function moveUp() {
+  if (isY && n == 1) {
+    return;
+  }
+  n = -1;
+  isX = false;
+  isY = true;
+  if(move_count) {
+    move1_sfx.currentTime = 0;
+    move1_sfx.play();
+    move_count = false
+  } else { 
+    move2_sfx.currentTime = 0;
+    move2_sfx.play();
+    move_count = true
+  }
+}
+
+function moveDown() {
+  if (isY && n == -1) {
+    return;
+  }
+  n = 1;
+  isX = false;
+  isY = true;
+  if(move_count) {
+    move1_sfx.currentTime = 0;
+    move1_sfx.play();
+    move_count = false
+  } else { 
+    move2_sfx.currentTime = 0;
+    move2_sfx.play();
+    move_count = true
   }
 }
 
